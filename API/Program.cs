@@ -9,6 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 app.UseCors(policy =>
@@ -16,7 +19,8 @@ app.UseCors(policy =>
     policy.AllowAnyHeader()
           .AllowAnyMethod()
           .WithOrigins(
-              "https://localhost:5001",
+              "http://localhost:4200",
+              "https://localhost:4200",
               "chrome-extension://amknoiejhlmhancpahfcfcfhllgkpbld"
           );
 });
