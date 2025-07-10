@@ -2,6 +2,7 @@ using System.Security.Claims;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
@@ -16,9 +17,12 @@ public class MembersController(
     : BaseApiController
 {
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<Member>>> GetMembers()
+    public async Task<ActionResult<IReadOnlyList<Member>>> GetMembers(
+        [FromQuery] MemberParams memberParams
+    )
     {
-        return Ok(await memberRepository.GetMembersAsync());
+        memberParams.CurrentMemberId = User.GetMemberId();
+        return Ok(await memberRepository.GetMembersAsync(memberParams));
     }
 
     [Authorize]
