@@ -10,6 +10,22 @@ public class PaginatedResult<T>
 
 public class PaginationHelper
 {
+
+    public static async Task<PaginatedResult<T>> CreateAsync<T>(
+        IQueryable<T> query,
+        PagingParams pagingParams)
+    {
+        if (pagingParams.PageNumber <= 0)
+        {
+            pagingParams.PageNumber = 1;
+        }
+        if (pagingParams.PageSize <= 0)
+        {
+            pagingParams.PageSize = 10; // Default page size
+        }
+
+        return await CreateAsync(query, pagingParams.PageNumber, pagingParams.PageSize);
+    }
     /// <summary>
     /// Creates a paginated result from a queryable source.
     /// </summary>
@@ -18,6 +34,8 @@ public class PaginationHelper
     /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <returns></returns>
+
+
     public static async Task<PaginatedResult<T>> CreateAsync<T>(
             IQueryable<T> query,
             int pageNumber,
