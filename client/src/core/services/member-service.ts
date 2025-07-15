@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { EditableMember, Member, MemberParams, Photo } from '../../types/Member';
 import { tap } from 'rxjs';
-import { PaginatedResult } from '../../types/Pagination';
+import { PaginatedResult } from '../../types/pagination';
 
 @Injectable({
   providedIn: 'root'

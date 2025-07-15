@@ -34,8 +34,10 @@ public class MessageRepository(AppDbContext context) : IMessageRepository
 
         query = messageParams.Container switch
         {
-            "Outbox" => query.Where(m => m.SenderId == messageParams.MemberId),
-            _ => query.Where(m => m.RecipientId == messageParams.MemberId)
+            "Outbox" => query.Where(m => m.SenderId == messageParams.MemberId
+                        && m.SenderDeleted == false),
+            _ => query.Where(m => m.RecipientId == messageParams.MemberId
+                        && m.RecipientDeleted == false)
         };
 
         var messageQuery = query.Select(MessageExtensions.ToDtoProjection());
@@ -54,8 +56,12 @@ public class MessageRepository(AppDbContext context) : IMessageRepository
                 .SetProperty(m => m.DateRead, DateTime.UtcNow));
 
         return await context.Messages
-            .Where(m => (m.RecipientId == currentMemberId && m.SenderId == recipientId)
-                || (m.SenderId == currentMemberId && m.RecipientId == recipientId))
+            .Where(m => (m.RecipientId == currentMemberId
+                         && m.RecipientDeleted == false
+                         && m.SenderId == recipientId)
+                || (m.SenderId == currentMemberId
+                        && m.SenderDeleted == false
+                        && m.RecipientId == recipientId))
             .OrderBy(m => m.MessageSent)
             .Select(MessageExtensions.ToDtoProjection())
             .ToListAsync();

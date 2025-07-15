@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Member, MemberParams } from '../../../types/Member';
 import { AsyncPipe } from '@angular/common';
 import { MemberCard } from "../member-card/member-card";
-import { PaginatedResult } from '../../../types/Pagination';
+import { PaginatedResult } from '../../../types/pagination';
 import { Paginator } from "../../../shared/paginator/paginator";
 import { FilterModal } from '../../member/filter-modal/filter-modal';
 import { TitleStrategy } from '@angular/router';
