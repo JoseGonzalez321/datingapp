@@ -14,6 +14,8 @@ public class AppDbContext(DbContextOptions options)
     public DbSet<Photo> Photos { get; set; }
     public DbSet<MemberLike> Likes { get; set; }
     public DbSet<Message> Messages { get; set; }
+    public DbSet<Connection> Connections { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
