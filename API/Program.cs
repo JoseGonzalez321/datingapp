@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 builder.Services.AddCors();
@@ -80,6 +80,7 @@ app.UseCors(policy =>
 {
     policy.WithOrigins(              
               "https://localhost:4200",
+              "http://localhost:4200",
               "chrome-extension://amknoiejhlmhancpahfcfcfhllgkpbld"
           )
           .AllowAnyHeader()
@@ -91,9 +92,13 @@ app.UseCors(policy =>
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
 app.MapHub<PresenceHub>("/hubs/presence");
 app.MapHub<MessageHub>("/hubs/messages");
+app.MapFallbackToController("Index", "Fallback");
 
 // service locator pattern to seed the database
 using var scope = app.Services.CreateScope();
