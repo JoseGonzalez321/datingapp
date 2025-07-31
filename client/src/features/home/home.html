@@ -15,7 +15,9 @@
             <h1 class="text-5xl font-bold">Find your match</h1>
             <p class="py-6">Discover new connections and friendships. All you need to do is sign up!</p>
             <div class="flex items-center gap-3">
-                <a (click)="showRegister(true)" class="btn btn-primary btn-lg">Register</a>
+                @if (!accountService.currentUser()) {
+                    <a (click)="showRegister(true)" class="btn btn-primary btn-lg">Register</a>
+                }                
                 <a class="btn btn-info btn-lg">Learn More</a>
             </div>
 
