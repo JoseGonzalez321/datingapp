@@ -1,7 +1,11 @@
 <div class="flex w-full gap-6 min-h-100">
     <div class="flex items-center gap-4 w-2/3">
-        <label (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
-            [class.border-purple-600]="isDragging" [class.border-4]="isDragging" [class.bg-purple-100]="isDragging"
+        <label (dragover)="onDragOver($event)" 
+            (dragleave)="onDragLeave($event)" 
+            (drop)="onDrop($event)"
+            [class.border-purple-600]="isDragging" 
+            [class.border-4]="isDragging" 
+            [class]="isDragging ? 'bg-secondary/500' : ''"
             for="dropzone-file" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 
                     h-full border-dashed rounded-lg cursor-pointer">
             <p class="mb-2 text-lg">Drag and drop your images here</p>
