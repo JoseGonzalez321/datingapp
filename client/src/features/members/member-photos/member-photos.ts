@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MemberService } from '../../../core/services/member-service';
 import { ActivatedRoute } from '@angular/router';
-import { Member, Photo } from '../../../types/Member';
+import { Member, Photo } from '../../../types/member';
 import { ImagesUpload } from "../../../shared/images-upload/images-upload";
 import { AccountService } from '../../../core/services/account-service';
 import { User } from '../../../types/user';

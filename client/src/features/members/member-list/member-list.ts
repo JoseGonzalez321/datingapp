@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { MemberService } from '../../../core/services/member-service';
 import { Observable } from 'rxjs';
-import { Member, MemberParams } from '../../../types/Member';
+import { Member, MemberParams } from '../../../types/member';
 import { AsyncPipe } from '@angular/common';
 import { MemberCard } from "../member-card/member-card";
 import { PaginatedResult } from '../../../types/pagination';

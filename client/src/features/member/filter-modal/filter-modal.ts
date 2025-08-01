@@ -1,5 +1,5 @@
 import { Component, ElementRef, input, model, output, ViewChild } from '@angular/core';
-import { Member, MemberParams } from '../../../types/Member';
+import { Member, MemberParams } from '../../../types/member';
 import { FormsModule } from '@angular/forms';
 
 @Component({
